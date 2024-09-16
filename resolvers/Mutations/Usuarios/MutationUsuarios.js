@@ -1,6 +1,6 @@
-const { usuarios, proximoId } = require("../../../data/db");
-const { validarEmail, validarEmailExistnte } = require("../../../data/validacoes/validarEmail")
-const { validarIdUsuarios } = require("../../../data/validacoes/validarID")
+const db = require("@data/db");
+const { validarEmail, validarEmailExistnte } = require("@data/validacoes/validarEmail")
+const { validarIdUsuarios } = require("@data/validacoes/validarID")
 
 const perfilDefault = 1;
 const statuDefault = 'ATIVO'
@@ -13,21 +13,34 @@ let indice;
 // { nome, email, idade } ou args
 module.exports = {
 
-    novoUsuario(_, { args }) {
-        validarEmail(args.email) // envia para a função de validação de email o email digitado
+    async novoUsuario(_, { args }) {
+        try {
+            // Verifica se o e-mail já está cadastrado
+            const emailExistente = await validarEmail(args.email);
+            if (emailExistente) {
+                console.log("Usuário já cadastrado com esse email");
+                throw new Error("Usuário já cadastrado com esse email = " + args.email);
+            }
+            // Cria um novo usuário usando os atributos fornecidos em args
+            const novoUsuario = {
+                nome: args.nome,
+                email: args.email,
+                senha: args.senha,
+                perfil: args.perfil || perfilDefault, // Usa perfilDefault se não for fornecido          
+                status: args.status || statuDefault // Usa statuDefault se não for fornecido
+            };
 
-        const novo = {
-            id: proximoId(),
-            ...args,
-            // nome,
-            // email,
-            // idade,
-            perfil_id: perfilDefault,
-            status: statuDefault
+            // Insere o novo usuário no banco de dados
+            await db('usuarios').insert(novoUsuario);
+            // Retorna o usuário criado
+            console.log("Usuário Cadastrado com Sucesso");
+
+            return novoUsuario;
+        } catch (error) {
+            throw new Error(`Erro ao criar usuário: ${error.message}`);
         }
-        usuarios.push(novo)
-        return novo
     },
+
     excluirUsuario(_, { filtro }) {
         const { id, email } = filtro
         if (id) {

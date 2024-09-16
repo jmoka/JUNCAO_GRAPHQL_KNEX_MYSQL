@@ -5,7 +5,7 @@
 exports.seed = async function (knex) {
 
   await knex('perfis').insert([
-    { nome: "comun", rotulo: 'Comum' },
+    { nome: "user", rotulo: 'Usuário' },
     { nome: "admin", rotulo: 'Administrador' },
     { nome: "master", rotulo: 'Master' }
   ]);

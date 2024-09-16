@@ -1,4 +1,4 @@
-const db = require("../../config/db")
+const db = require("@data/db.js")
 
 // basico
 //db("nome da tabela")

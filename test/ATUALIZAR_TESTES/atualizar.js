@@ -1,4 +1,4 @@
-const db = require("../../config/db")
+const db = require("@data/db.js")
 
 // db("perfis").where().update({});
 

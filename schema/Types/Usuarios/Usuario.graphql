@@ -1,27 +1,38 @@
 type Perfil {
   id: Int
   nome: String
+  rotulo: String
 }
 
-enum UsuarioStatus {
+enum enum_StatusUsuarios {
   ATIVO
   INATIVO
   BLOQUEADO
 }
 
+type Usuario_Perfil {
+  usuario_id: Int
+  perfil_id: Int
+}
+
+scalar Date
+
 type Usuario {
   id: Int
   nome: String!
   email: String!
-  idade: Int
+  senha: String!
   perfil: Perfil
-  status: UsuarioStatus
+  status: enum_StatusUsuarios
+  dataCriacao: Date
 }
 
 input UsuarioInput {
   nome: String
   email: String
-  idade: Int
+  senha: String!
+  perfil: String
+  status: enum_StatusUsuarios
 }
 input FiltarUsuario {
   id: Int

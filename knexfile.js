@@ -1,6 +1,7 @@
-require('dotenv').config(); // Carrega as variáveis de ambiente do arquivo .env
+const dotenv = require('dotenv'); // Importação ESM
+dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 
-module.exports = {
+const config = {
   development: {
     client: 'mysql',
     connection: {
@@ -9,12 +10,6 @@ module.exports = {
       password: process.env.DB_PASS,
       database: process.env.DB_NAME
     },
-    // test: {
-    //   host: process.env.DB_HOST,
-    //   user: process.env.DB_USER,
-    //   password: process.env.DB_PASS,
-    //   database: process.env.DB_NAME
-    // },
     migrations: {
       directory: './migrations',
       tableName: 'knex_migrations',
@@ -25,3 +20,4 @@ module.exports = {
   },
 };
 
+module.exports = config;

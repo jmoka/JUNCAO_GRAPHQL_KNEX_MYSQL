@@ -1,10 +1,14 @@
 {
-  "name": "graphql_bd",
+  "name": "juncao_graphql_knex_mysql",
   "version": "1.0.0",
-  "description": "GraphQL com BD",
+  "_moduleAliases": {
+    "@data": "data"
+  },
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --ext js,graphql"
+    "start": "nodemon --ext js,graphql",
+    "client": "node client.js"
   },
   "keywords": [],
   "author": "",
@@ -12,14 +16,22 @@
   "dependencies": {
     "@graphql-tools/schema": "^10.0.6",
     "apollo-server": "^2.4.8",
+    "axios": "^1.7.7",
+    "cross-fetch": "^4.0.0",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
     "graphql": "^14.2.1",
     "graphql-import": "^0.7.1",
     "graphql-tag": "^2.12.6",
-    "dotenv": "^16.4.5",
     "knex": "^3.1.0",
-    "mysql": "^2.18.1"
+    "module-alias": "^2.2.3",
+    "mysql": "^2.18.1",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "@babel/core": "^7.25.2",
+    "@babel/node": "^7.25.0",
+    "@babel/preset-env": "^7.25.4",
+    "nodemon": "^3.1.4"
   }
 }

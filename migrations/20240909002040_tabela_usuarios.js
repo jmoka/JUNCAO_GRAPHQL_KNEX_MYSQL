@@ -9,11 +9,13 @@ exports.up = function (knex, Promise) {
             table.string("nome", 255).notNullable()
             table.string("email", 255).notNullable().unique()
             table.string("senha", 60).notNullable()
-            table.boolean("ativo").notNullable()
+            table.integer("perfil").notNullable()
+            table.string("status").notNullable()
             table.timestamp("data_criacao").defaultTo(knex.fn.now())
         }).then(function () {
             return knex("usuarios").insert([
-                { nome: "admin", email: "admin@jota.com", senha: "123", ativo: true }
+                { nome: "master", email: 'master@master.com', senha: process.env.SENHA_MASTER, perfil: 1, status: "ATIVO" }
+
             ])
         })
 
