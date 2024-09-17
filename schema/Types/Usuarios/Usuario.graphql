@@ -28,13 +28,14 @@ type Usuario {
 }
 
 input UsuarioInput {
-  nome: String
-  email: String
+  nome: String!
+  email: String!
   senha: String!
-  perfil: String
+  perfil: Int
   status: enum_StatusUsuarios
 }
-input FiltarUsuario {
+input FiltraUsuario {
   id: Int
+  nome: String
   email: String
 }

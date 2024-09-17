@@ -3,6 +3,6 @@
 type Mutation {
   # novoUsuario(nome: String, email: String, idade: Int): Usuario!
   novoUsuario(args: UsuarioInput): Usuario!
-  excluirUsuario(filtro: FiltarUsuario!): Usuario
-  alterarUsuario(args: UsuarioInput!, filtro: FiltarUsuario!): Usuario
+  excluirUsuario(filtro: FiltraUsuario!): Usuario
+  alterarUsuario(args: UsuarioInput!, filtro: FiltraUsuario!): Usuario
 }

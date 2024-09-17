@@ -1,10 +1,8 @@
 const db = require("@data/db");
-const { validarEmail, validarEmailExistnte } = require("@data/validacoes/ValidarUsuarios/validarEmail")
-const { validarIdUsuarios } = require("@data/validacoes/ValidarUsuarios/validarID")
+const { validarEmail } = require("@data/validacoes/ValidarUsuarios/validarEmail")
 
 const perfilDefault = 1;
 const statuDefault = 'ATIVO'
-let indice;
 
 // pode usar  a o operador expred .... usando o args
 // ... args espalha todos os atributos que vem nos argumentos 
@@ -40,47 +38,22 @@ module.exports = {
         }
     },
 
-    excluirUsuario(_, { filtro }) {
-        const { id, email } = filtro
-        if (id) {
-            indice = validarIdUsuarios(id)
-        } else if (email) {
-            indice = validarEmailExistnte(email)
-        } else {
-            throw new Error("Id ou Email deve ser fornecido para alterar o usuário.");
-        }
-        if (indice === undefined) {
-            throw new Error("Usuário não encontrado.");
-        }
-        const excluido = usuarios.splice(indice, 1)
-        return excluido ? excluido[0] : null
 
-    },
-    alterarUsuario(_, { args, filtro }) {
-
-        const { id, email } = filtro
-        console.log("id-alteração ===>" + id);
-
-        if (id) {
-            indice = validarIdUsuarios(id)
-
-        } else if (email) {
-            indice = validarEmailExistnte(email)
-        } else {
-            throw new Error("Id ou Email deve ser fornecido para alterar o usuário.");
-        }
-
-        if (indice === undefined) {
-            throw new Error("Usuário não encontrado.");
-        }
-
-        const usuarioAlterado = {
-            ...usuarios[indice],
-            ...args,
-        }
-        usuarios.splice(indice, 1, usuarioAlterado)
-        return usuarioAlterado
-
-    }
 }
 
+// Consulta do Cliente
+
+// mutation{
+//     novoUsuario(
+//       args: {
+//         nome: "nomesuaio",
+//         email: "EmaiUsurio3@xxx.com",
+//         senha: "12ddds3456",
+//     }
+//     ) {
+//       nome
+//       email   
+//       status
+     
+//       }
+//   }
