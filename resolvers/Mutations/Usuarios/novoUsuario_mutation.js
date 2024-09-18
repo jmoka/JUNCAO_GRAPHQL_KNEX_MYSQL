@@ -1,5 +1,5 @@
 const db = require("@data/db");
-const { validarEmail } = require("@data/validacoes/ValidarUsuarios/validarEmail")
+const validarEmail = require("@data/validacoes/ValidarUsuarios/validarEmail");
 
 const perfilDefault = 1;
 const statuDefault = 'ATIVO'
