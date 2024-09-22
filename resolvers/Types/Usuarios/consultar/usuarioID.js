@@ -1,7 +1,7 @@
 const db = require("@data/db");
 const { format } = require("date-fns");
-
 async function UsuarioID(id) {
+    console.log(`UsuarioID=>${id}`);
     try {
         const usuarioID = await db("usuarios")
             .leftJoin("perfis", "usuarios.perfil", "=", "perfis.id") // Usar leftJoin para incluir usuários sem perfil
@@ -16,11 +16,9 @@ async function UsuarioID(id) {
             )
             .where({ "usuarios.id": id }) // Use "usuarios.id" para evitar conflito de escopo
             .first();
-
         if (!usuarioID) {
             throw new Error("Não foi possível retornar nenhum usuário com esse ID");
         }
-
         // Agrupar os resultados para formato esperado pelo GraphQL
         const resultado = {
             id: usuarioID.id,
@@ -40,23 +38,71 @@ async function UsuarioID(id) {
         throw new Error("Não foi possível retornar o usuário com esse ID."); // Mensagem sem "cathe"
     }
 }
+async function Usuario_ID(id) {
+    console.log(`Usuario_ID=>${id}`);
+    try {
+        console.log("entrou no try" + id);
+        const UsuarioSelecionado = await db("usuarios")
+            .leftJoin("perfis", "usuarios.perfil", "=", "perfis.id")
+            .select(
+                "usuarios.id",
+                "usuarios.nome",
+                "usuarios.email",
+                "usuarios.status",
+                "usuarios.perfil",
+                "perfis.nome as perfil_nome", // Nome do perfil
+                "perfis.rotulo as perfil_rotulo", // Rótulo do perfil
+                "usuarios.data_criacao",)
+            .where({ "usuarios.id": id-- }).first();
+        if (!UsuarioSelecionado) {
+            throw new Error("Não foi possível retornar nenhum usuário com esse ID");
+        }
+        const usuarioCadastrado = {
+            id: UsuarioSelecionado.id,
+            nome: UsuarioSelecionado.nome,
+            email: UsuarioSelecionado.email,
+            status: UsuarioSelecionado.status,
+            perfil: {
+                id: UsuarioSelecionado.id,
+                nome: UsuarioSelecionado.perfil_nome,
+                rotulo: UsuarioSelecionado.perfil_rotulo
+            },
+            dataCriacao: UsuarioSelecionado.data_criacao,
+        }
+        console.log(usuarioCadastrado);
+        return usuarioCadastrado
+    } catch (error) {
+        console.error("Erro ao buscar usuário:", error.message); // Log do erro no console
+        throw new Error("Não foi possível retornar o usuário com esse ID."); // Mensagem sem "cathe"
+    }
+}
+module.exports = {
+    UsuarioID,
+    Usuario_ID
+}
 
-module.exports = UsuarioID;
 
-
-
-// consulta clearInterval
-
-// query UsuarioID{
-//     usuario_ID(id:1){
+// mutation{
+//     novoUsuario(
+//         user:{
+//         nome:"lredsettedtttdru"
+//         email:"tdt@jo"
+//         status:ATIVO
+//         perfil:2
+//       }    
+//     ){
 //       id
 //       nome
-//         email
+//       email
 //       status
-//       dataCriacao
 //       perfil{
 //         nome
 //         rotulo
-//       }
 //     }
+//       dataCriacao
+//   }
+  
 //     }
+  
+  
+      

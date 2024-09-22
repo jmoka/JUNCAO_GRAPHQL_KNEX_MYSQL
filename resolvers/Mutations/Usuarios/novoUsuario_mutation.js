@@ -1,6 +1,6 @@
 const db = require("@data/db");
 const validarEmail = require("@data/validacoes/ValidarUsuarios/validarEmail");
-
+const {Usuario_ID} =  require("../../Types/Usuarios/consultar/usuarioID")
 const perfilDefault = 1;
 const statuDefault = 'ATIVO'
 
@@ -11,41 +11,71 @@ const statuDefault = 'ATIVO'
 // { nome, email, idade } ou args
 module.exports = {
 
-    async novoUsuario(_, { args }) {
+    async novoUsuario(_, { user }) {
         try {
             // Verifica se o e-mail já está cadastrado
-            const emailExistente = await validarEmail(args.email);
+            const emailExistente = await validarEmail(user.email);
             if (emailExistente) {
                 console.log("Usuário já cadastrado com esse email");
-                throw new Error("Usuário já cadastrado com esse email = " + args.email);
+                throw new Error("Usuário já cadastrado com esse email = " + user.email);
             }
-            // Cria um novo usuário usando os atributos fornecidos em args
-            const novoUsuario = {
-                nome: args.nome,
-                email: args.email,
-                senha: args.senha,
-                perfil: args.perfil || perfilDefault, // Usa perfilDefault se não for fornecido          
-                status: args.status || statuDefault // Usa statuDefault se não for fornecido
+            // Cria um novo usuário usando os atributos fornecidos em user
+            let UsuarioEnviado = {
+                nome: user.nome,
+                email: user.email,
+                senha: user.senha,
+                perfil: user.perfil || perfilDefault, // Usa perfilDefault se não for fornecido          
+                status: user.status || statuDefault // Usa statuDefault se não for fornecido
             };
 
             // Insere o novo usuário no banco de dados
-            await db('usuarios').insert(novoUsuario);
-            // Retorna o usuário criado
-            console.log("Usuário Cadastrado com Sucesso");
-            return novoUsuario;
-        } catch (error) {
-            throw new Error(`Erro ao criar usuário: ${error.message}`);
+             const usuarioInserido = await db('usuarios').insert(UsuarioEnviado)
+     
+            return Usuario_ID(usuarioInserido)
+            
+            }    
+                 
+            
+         catch (error) {
+            throw new Error(`Erro ao criar usuário: ${ error.message } `);
         }
-    },
+}}
+          
+           
+          
+              
+                
+                
+                
+   
+                
+            
+                
+            //     novoUsuario = {
+            //         id: novoUsuarioCadastrado.id,
+            //         nome: user.nome,
+            //         email: user.email,
+            //         senha: user.senha,
+            //         perfil: user.perfil || perfilDefault, // Usa perfilDefault se não for fornecido          
+            //         status: user.status || statuDefault // Usa statuDefault se não for fornecido
+            //     };
+            //     console.log(novoUsuario);
+            //     return novoUsuario
+                
+              
+               
+            // }
+           
 
 
-}
+
+
 
 // Consulta do Cliente
 
 // mutation{
 //     novoUsuario(
-//       args: {
+//       user: {
 //         nome: "nomesuaio",
 //         email: "EmaiUsurio3@xxx.com",
 //         senha: "12ddds3456",

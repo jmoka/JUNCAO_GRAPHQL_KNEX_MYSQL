@@ -31,8 +31,8 @@ input UsuarioInput {
   nome: String
   email: String
   senha: String
-  perfil: Int
-  status: enum_StatusUsuarios
+  perfil: Int!
+  status: enum_StatusUsuarios!
 }
 input FiltraUsuario {
   id: Int

@@ -6,28 +6,28 @@ const perfilDefault = 1;
 const statuDefault = 'ATIVO'
 let indice;
 
-// pode usar  a o operador expred .... usando o args
-// ... args espalha todos os atributos que vem nos argumentos 
+// pode usar  a o operador expred .... usando o user
+// ... user espalha todos os atributos que vem nos argumentos 
 // quando você vai usar todos essa é a melhor forma
 // caso contrario , você quira somente um ou dois itens ou de forma explicita usa-se { nome, email, idade }
-// { nome, email, idade } ou args
+// { nome, email, idade } ou user
 module.exports = {
 
-    async novoUsuario(_, { args }) {
+    async novoUsuario(_, { user }) {
         try {
             // Verifica se o e-mail já está cadastrado
-            const emailExistente = await validarEmail(args.email);
+            const emailExistente = await validarEmail(user.email);
             if (emailExistente) {
                 console.log("Usuário já cadastrado com esse email");
-                throw new Error("Usuário já cadastrado com esse email = " + args.email);
+                throw new Error("Usuário já cadastrado com esse email = " + user.email);
             }
-            // Cria um novo usuário usando os atributos fornecidos em args
+            // Cria um novo usuário usando os atributos fornecidos em user
             const novoUsuario = {
-                nome: args.nome,
-                email: args.email,
-                senha: args.senha,
-                perfil: args.perfil || perfilDefault, // Usa perfilDefault se não for fornecido          
-                status: args.status || statuDefault // Usa statuDefault se não for fornecido
+                nome: user.nome,
+                email: user.email,
+                senha: user.senha,
+                perfil: user.perfil || perfilDefault, // Usa perfilDefault se não for fornecido          
+                status: user.status || statuDefault // Usa statuDefault se não for fornecido
             };
 
             // Insere o novo usuário no banco de dados
@@ -56,7 +56,7 @@ module.exports = {
         return excluido ? excluido[0] : null
 
     },
-    alterarUsuario(_, { args, filtro }) {
+    alterarUsuario(_, { user, filtro }) {
 
         const { id, email } = filtro
         console.log("id-alteração ===>" + id);
@@ -76,7 +76,7 @@ module.exports = {
 
         const usuarioAlterado = {
             ...usuarios[indice],
-            ...args,
+            ...user,
         }
         usuarios.splice(indice, 1, usuarioAlterado)
         return usuarioAlterado

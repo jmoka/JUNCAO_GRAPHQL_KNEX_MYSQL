@@ -6,14 +6,14 @@ async function TodosUsuarios() {
     try {
         const usuarios = await db("usuarios")
             .leftJoin("perfis", "usuarios.perfil", "=", "perfis.id") // Usar leftJoin para incluir usuários sem perfil
-            .select(
-                "usuarios.id",
-                "usuarios.nome",
-                "usuarios.email",
-                "usuarios.status",
-                "usuarios.data_criacao",
-                "perfis.nome as perfil_nome", // Nome do perfil
-                "perfis.rotulo as perfil_rotulo" // Rótulo do perfil
+            .select('*'
+                // "usuarios.id",
+                // "usuarios.nome",
+                // "usuarios.email",
+                // "usuarios.status",
+                // "usuarios.data_criacao",
+                // "perfis.nome as perfil_nome", // Nome do perfil
+                // "perfis.rotulo as perfil_rotulo" // Rótulo do perfil
             );
 
         if (!usuarios || usuarios.length === 0) {

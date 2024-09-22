@@ -1,7 +1,7 @@
 const db = require("@data/db")
 
 module.exports = {
-    async alterarUsuario(_, { args, filtro }) {
+    async alterarUsuario(_, { user, filtro }) {
         const { id, nome, email } = filtro
 
         //     console.log(`id= ${id} , nome = ${nome}, email = ${email}  `);
@@ -9,10 +9,10 @@ module.exports = {
         let usuarioEncontrado;
 
         const atualizacoes = {
-            nome: args.nome,
-            email: args.email,
-            perfil: args.perfil,
-            status: args.status
+            nome: user.nome,
+            email: user.email,
+            perfil: user.perfil,
+            status: user.status
         };
         try {
 
@@ -21,23 +21,23 @@ module.exports = {
                     .where({ id })
                     .update(atualizacoes)
                 usuarioEncontrado = await db("usuarios")
-                    .where({ id }).first()
-                    .then(resp => console.log(resp)
-                    )
+                    .where({ id }).first();
+
+                return usuarioEncontrado;
 
             } else if (nome) {
                 usuarioEncontrado = await db("usuarios")
                     .where({ nome })
                     .update(atualizacoes)
-
                 usuarioEncontrado = await db("usuarios")
-                    .where({ nome }).first()
-
+                    .where({ nome }).first();
+                return usuarioEncontrado;
 
             } else if (email) {
                 usuarioEncontrado = await db("usuarios")
                     .where({ email }).first()
                     .update(atualizacoes)
+                return usuarioEncontrado;
 
 
             } else {

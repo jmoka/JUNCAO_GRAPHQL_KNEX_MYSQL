@@ -3,6 +3,8 @@ type Query {
   usuario_ID(id: Int): Usuario
   usuario_Nome(nome: String): Usuario
   perfis: [Perfil]
-  perfil(id: Int): Perfil
+  perfil_ID(id: Int): Perfil
+  perfil_Nome(nome: String): Perfil
+  perfil_Rotulo(rotulo: String): Perfil
   Usuario_Perfil: [Usuario_Perfil]
 }
