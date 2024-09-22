@@ -39,9 +39,9 @@ async function UsuarioID(id) {
     }
 }
 async function Usuario_ID(id) {
-    console.log(`Usuario_ID=>${id}`);
+ 
     try {
-        console.log("entrou no try" + id);
+      
         const UsuarioSelecionado = await db("usuarios")
             .leftJoin("perfis", "usuarios.perfil", "=", "perfis.id")
             .select(
@@ -69,7 +69,6 @@ async function Usuario_ID(id) {
             },
             dataCriacao: UsuarioSelecionado.data_criacao,
         }
-        console.log(usuarioCadastrado);
         return usuarioCadastrado
     } catch (error) {
         console.error("Erro ao buscar usuário:", error.message); // Log do erro no console
@@ -82,27 +81,35 @@ module.exports = {
 }
 
 
+
+
+
+// CONSULTA NO CLIENT
+
 // mutation{
 //     novoUsuario(
-//         user:{
-//         nome:"lredsettedtttdru"
-//         email:"tdt@jo"
-//         status:ATIVO
-//         perfil:2
-//       }    
-//     ){
-//       id
+//       user: {
+//         nome: "dddddddddd",
+//         email: "dddddddf@xxx.com",
+//         senha: "1d2fddsds34d56",  
+//         perfil: 1,
+//         status: ATIVO
+//     }
+//     ) {
+//     id
 //       nome
-//       email
+//       email   
 //       status
-//       perfil{
-//         nome
-//         rotulo
-//     }
-//       dataCriacao
+//     	perfil{
+//         id
+// 				nome
+// 				rotulo
+//       }
+//     dataCriacao
+    
+     
+//       }
 //   }
-  
-//     }
   
   
       
