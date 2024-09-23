@@ -38,8 +38,9 @@ module.exports = {
 
             // Insere o o perfil associado ao usuario na tabela uaurio-perfis           
             await db("usuario-perfis").insert(UsuarioPerfil)
-            // retorna uuario cadastrado
-            return Usuario_ID(usuarioInserido)
+            
+            // retorna uario cadastrado
+            return Usuario_ID(usuarioInserido) 
             
             }                    
             

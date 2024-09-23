@@ -5,12 +5,10 @@ async function validarNomeUsuarios(nome) {
 
     try {
         const usuario = await db("usuarios").where({ nome: nome })
-        console.log("usuario = " + usuario);
 
         if (usuario.length > 0) {
-            console.log("Usuário encontrado");
+            console.log("Usuário encontrado validade retorno true");
             return true
-
 
         } else {
             console.log("Usuário não encontrado");

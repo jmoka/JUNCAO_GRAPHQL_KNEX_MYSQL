@@ -15,16 +15,4 @@ async function validarEmail(email) {
     }
 }
 
-// async function validarEmailExistnte(email) {
-//     console.log("email recebido: " + email);
-
-//     const emailExistente = await usuarios.findIndex(u => u.email === email);
-//     console.log("emailExistente: " + emailExistente);
-//     if (emailExistente >= 0) {
-//         return emailExistente;
-//     } else {
-//         throw new Error("Email não Encontrado");
-//     }
-// }
-
 module.exports = validarEmail;
