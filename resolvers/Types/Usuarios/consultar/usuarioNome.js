@@ -47,18 +47,20 @@ module.exports = UsuarioNome;
 
 
 
-// consulta clearInterval
 
-// query UsuarioID{
-//     usuario_ID(id:1){
+// consultar por nome usuario
+
+// query{
+//     usuario_Nome(nome:"dddddsddiddddd"){
 //       id
 //       nome
-//         email
+//       email
 //       status
-//       dataCriacao
-//       perfil{
+//       perfil {
+//         id
 //         nome
 //         rotulo
 //       }
+//       dataCriacao
 //     }
-//     }
+//   }

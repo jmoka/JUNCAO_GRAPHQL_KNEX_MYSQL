@@ -39,9 +39,9 @@ async function UsuarioID(id) {
     }
 }
 async function Usuario_ID(id) {
- 
+
     try {
-      
+
         const UsuarioSelecionado = await db("usuarios")
             .leftJoin("perfis", "usuarios.perfil", "=", "perfis.id")
             .select(
@@ -84,32 +84,20 @@ module.exports = {
 
 
 
-// CONSULTA NO CLIENT
+// CONSULTA NO CLIENT POR ID
 
-// mutation{
-//     novoUsuario(
-//       user: {
-//         nome: "dddddddddd",
-//         email: "dddddddf@xxx.com",
-//         senha: "1d2fddsds34d56",  
-//         perfil: 1,
-//         status: ATIVO
-//     }
-//     ) {
-//     id
+// query{
+//     usuario_ID(id: 313) {
+//       id
 //       nome
-//       email   
+//       email
 //       status
-//     	perfil{
+//       perfil {
 //         id
-// 				nome
-// 				rotulo
+//         nome
+//         rotulo
 //       }
-//     dataCriacao
-    
-     
-//       }
+//       dataCriacao
+//     }
 //   }
-  
-  
-      
+

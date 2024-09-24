@@ -39,21 +39,54 @@ module.exports = {
             console.log(`Usuario deletado da tabela de referência com perfis ${JSON.stringify(usuarioEncontrado)}`);
         }
         await db("usuarios").where(criterio).del()
-        // .finally(() => db.destroy())
+
 
         console.log(`Usuário com ${JSON.stringify(criterio)} deletado.`);
 
 
-        const userdeletado = {
-            ...usuarioEncontrado
-            // id: usuarioEncontrado.id,
-            // nome: usuarioEncontrado.nome,
-            // email: usuarioEncontrado.email,
+        const perfil = await db("perfis").where({ id: usuarioEncontrado.perfil }).first()
+        const retorno = {
+            id: usuarioEncontrado.id,
+            nome: usuarioEncontrado.nome,
+            email: usuarioEncontrado.email,
+            status: usuarioEncontrado.status,
+            dataCriacao: usuarioEncontrado.data_criacao,
+            perfil: {
+                id: perfil.id,
+                nome: perfil.nome,
+                rotulo: perfil.rotulo
+            }
         }
-
-        return userdeletado
+        return retorno;
     },
 
 };
+
+// Excluir Usuarios
+
+
+
+// mutation{
+//     excluirUsuario(
+//     filtro:{
+//        id:318
+//        nome:""
+//        email:""
+//     }  
+//     ){
+//       nome
+//         id
+//       email
+//       status
+//       dataCriacao
+//     perfil{
+//       nome
+//       rotulo
+//     }
+    
+      
+//     }
+      
+//     }
 
 
