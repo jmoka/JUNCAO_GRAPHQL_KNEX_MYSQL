@@ -1,4 +1,5 @@
-const db = require("@data/db")
+const db = require("@data/db");
+const { forEachField } = require("apollo-server");
 
 async function TodosPerfis() {
     try {
@@ -7,19 +8,28 @@ async function TodosPerfis() {
             .select(
                 '*'
             )
-        if (!PerfisEnconstrados || !PerfisEnconstrados.length === 0) {
-            throw new Error(`Perfil não encontrado com o nome ${nome}`);
+        for (item of PerfisEnconstrados) {
+            const perfis = {
+                id: item.id,
+                nome: item.nome,
+                rotulo: item.rotulo
+            }
+            console.log(perfis);
 
         }
-
         return PerfisEnconstrados
-
     } catch (error) {
         throw new Error(`Perfil não encontrado com o nome ${nome}`);
-
     }
-
-
 }
-
 module.exports = TodosPerfis;
+
+//---------------------------------------
+
+// query{
+//     perfis{
+//       id
+//        nome
+//       rotulo
+//     }
+//   }

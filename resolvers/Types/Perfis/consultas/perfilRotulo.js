@@ -1,37 +1,39 @@
 const db = require("@data/db");
 
 async function perfilRotulo(rotulo) {
+    try {
 
-    // if (!rotulo || rotulo.length === 0) {
-    //     throw new Error(`Perfil não encontrado com o Rotulo ${rotulo}`);
+        const perfil = await db("perfis")
+            .select('*')
+            .where({ rotulo: rotulo })
+            .first();
 
-    // }
-    const perfil = await db("perfis")
-        .select('*')
-        .where({ rotulo: rotulo })
-        .first();
+        const perfilEncontrado = {
+            Id: perfil.id,
+            nome: perfil.nome,
+            rotulo: perfil.rotulo
+        }
 
-    console.log(perfil);
+        console.log(perfilEncontrado);
+        return perfilEncontrado;
 
 
-    const perfilEncontrado = {
-        Id: perfil.id,
-        nome: perfil.nome,
-        rotulo: perfil.rotulo
+    } catch (error) {
+        throw new Error(`Usuario não encontrado com o ID =  ${rotulo}`)
     }
 
-    console.log(`Perfil Encontrado é => ${perfilEncontrado}`);
-    return perfilEncontrado;
 
-
-
-    // } catch (error) {
-    //     console.log(rotulo);
-
-    //     throw new Error(`1 Perfil não encontrado com o Rotulo ${rotulo}`);
-
-    // }
 
 }
 
 module.exports = perfilRotulo;
+
+// --------------------------------
+
+// query{
+//     perfil_Rotulo(rotulo:"Master"){
+//           id
+//       nome
+//           rotulo
+//     }
+//   }

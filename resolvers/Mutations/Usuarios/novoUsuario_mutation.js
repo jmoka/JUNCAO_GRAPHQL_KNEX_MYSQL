@@ -4,11 +4,6 @@ const {Usuario_ID} =  require("../../Types/Usuarios/consultar/usuarioID")
 const perfilDefault = 1;
 const statuDefault = 'ATIVO'
 
-// pode usar  a o operador expred .... usando o args
-// ... args espalha todos os atributos que vem nos argumentos 
-// quando você vai usar todos essa é a melhor forma
-// caso contrario , você quira somente um ou dois itens ou de forma explicita usa-se { nome, email, idade }
-// { nome, email, idade } ou args
 module.exports = {
 
     async novoUsuario(_, { user }) {

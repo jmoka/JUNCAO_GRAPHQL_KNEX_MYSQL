@@ -1,21 +1,35 @@
 const db = require("@data/db");
 
 async function PerfilNome(nome) {
-    console.log(`Nome =  ${nome}`);
+    try {
+        const perfil = await db("perfis")
+            .select('*')
+            .where({ nome: nome }).first()
 
-    const perfil = await db("perfis")
-        .select('*')
-        .where({ nome: nome }).first()
+        const perfilEnconstrado = {
+            id: perfil.id,
+            nome: perfil.nome,
+            rotulo: perfil.rotulo
+        }
+        console.log(perfilEnconstrado);
+        return perfilEnconstrado
 
-    const perfilEnconstrado = {
-        id: perfil.id,
-        nome: perfil.nome,
-        rotulo: perfil.rotulo
+    } catch (error) {
+        throw new Error(`Usuario não encontrado com o Nome =  ${nome}`)
+
     }
-    console.log(perfilEnconstrado);
-    return perfilEnconstrado
 
 
 }
 
 module.exports = PerfilNome;
+
+//-------------------------------
+
+// query{
+//     perfil_Nome(nome:"master"){
+//           id
+//       nome
+//           rotulo
+//     }
+//   }

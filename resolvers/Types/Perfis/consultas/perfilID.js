@@ -3,9 +3,7 @@ const db = require("@data/db")
 async function PerfilID(id) {
     try {
         const perfis = await db("perfis").select('*').where({ id: id }).first();
-        if (!perfis || !perfis.length === 0) {
-            throw new Error(`Usuario não encontrado com o ID =  ${id}`);
-        }
+
         const perfilEnconstrado = {
             id: perfis.id,
             nome: perfis.nome,
@@ -23,3 +21,15 @@ async function PerfilID(id) {
 }
 
 module.exports = PerfilID;
+
+// -----------------------------
+
+
+
+// query{
+//     perfil_ID(id:1){
+//           id
+//       nome
+//           rotulo
+//     }
+//   }

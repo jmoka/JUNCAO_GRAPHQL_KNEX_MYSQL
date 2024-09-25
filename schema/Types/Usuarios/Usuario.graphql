@@ -39,3 +39,14 @@ input FiltraUsuario {
   nome: String
   email: String
 }
+
+input PerfilInput {
+  nome: String
+  rotulo: String
+}
+
+input FiltrarPerfil {
+  id: Int
+  nome: String
+  rotulo: String
+}
