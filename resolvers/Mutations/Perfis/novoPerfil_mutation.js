@@ -11,14 +11,14 @@ module.exports = {
             }
             for (itens of perfis) {
                 if (itens.nome === perfil.nome) {
-                    console.log("Nome ja Cadastrado   =>" + perfil.nome);
+                    // console.log("Nome ja Cadastrado   =>" + perfil.nome);
                     return new Error("Nome ja Cadastrado =>" + perfil.nome);
                 }
             }
             const perfilCadastrado = await db("perfis").insert(novoPerfil)
 
             for (itens of perfilCadastrado) {
-                console.log(itens);
+                // console.log(itens);
                 const perfilNovo = await db("perfis").select(
                     "id",
                     "nome",
@@ -32,7 +32,7 @@ module.exports = {
                     rotulo: perfilNovo.rotulo
                 }
 
-                console.log(retorno);
+                // console.log(retorno);
 
 
                 return retorno

@@ -11,7 +11,7 @@ async function PerfilNome(nome) {
             nome: perfil.nome,
             rotulo: perfil.rotulo
         }
-        console.log(perfilEnconstrado);
+
         return perfilEnconstrado
 
     } catch (error) {

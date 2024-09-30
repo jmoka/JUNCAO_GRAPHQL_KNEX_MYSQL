@@ -2,7 +2,7 @@ const db = require("@data/db")
 module.exports = {
     async alterarUsuario(_, { user, filtro }) {
         const { id, nome, email } = filtro
-        //     console.log(`id= ${id} , nome = ${nome}, email = ${email}  `);
+       
         let usuarioEncontrado;
         const atualizacoes = {
             nome: user.nome,
@@ -52,7 +52,7 @@ module.exports = {
                 }
                 return retorno;
             } else if (email) {
-                console.log(email);
+             
                 usuarioEncontrado = await db("usuarios")
                     .where({ email })
                     .update(atualizacoes)

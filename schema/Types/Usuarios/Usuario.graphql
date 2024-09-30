@@ -4,13 +4,13 @@ type Perfil {
   rotulo: String
 }
 
-enum enum_StatusUsuarios {
+enum enumStatusUsuarios {
   ATIVO
   INATIVO
   BLOQUEADO
 }
 
-type Usuario_Perfil {
+type UsuarioPerfil {
   usuario_id: Int
   perfil_id: Int
 }
@@ -23,7 +23,7 @@ type Usuario {
   email: String!
   senha: String!
   perfil: Perfil
-  status: enum_StatusUsuarios
+  status: enumStatusUsuarios
   dataCriacao: Date
 }
 
@@ -32,7 +32,7 @@ input UsuarioInput {
   email: String
   senha: String
   perfil: Int!
-  status: enum_StatusUsuarios!
+  status: enumStatusUsuarios!
 }
 input FiltraUsuario {
   id: Int

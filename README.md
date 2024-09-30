@@ -1,3 +1,21 @@
+# Sistema esta Configurado para Produção
+
+- Dessa forma está bloqueado o Playground ara efetuar os testes
+- Para colocar o sistema em desenvolvimento faça o seguinte
+- Abra o arquivo
+
+            knexfile.js
+
+- E altere:
+
+## Modo Produção
+
+            NODE_ENV=production
+
+## Modo Desenvolvimento
+
+            NODE_ENV=development
+
 ## Inicializar Usando o package.json
 
 - Crie um arquivo packege.json na raiz do projeto

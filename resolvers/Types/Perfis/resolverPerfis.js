@@ -11,16 +11,16 @@ module.exports = {
 
 
     },
-    perfil_ID(_, { id }) {
+    perfilID(_, { id }) {
         return PerfilID(id)
 
     },
 
-    perfil_Nome(_, { nome }) {
+    perfilNome(_, { nome }) {
         return PerfilNome(nome)
     },
 
-    perfil_Rotulo(_, { rotulo }) {
+    perfilRotulo(_, { rotulo }) {
         return PerfilRotulo(rotulo)
     }
 

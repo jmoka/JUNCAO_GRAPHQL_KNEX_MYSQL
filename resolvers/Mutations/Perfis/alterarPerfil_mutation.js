@@ -7,10 +7,9 @@ module.exports = {
         const { id, nome, rotulo } = filtro;
 
         if (id) {
-            console.log(id);
             const idEnonstrado = await db("perfis").where({ id }).first()
             if (!idEnonstrado) {
-                console.log(`Perfil com Id ${id} não encontrado!!!`);
+                // console.log(`Perfil com Id ${id} não encontrado!!!`);
                 throw new Error(`Perfil com Id ${id} não encontrado!!!`);
             }
 
@@ -18,19 +17,19 @@ module.exports = {
                 nome: perfil.nome,
                 rotulo: perfil.rotulo
             }
-            console.log("===NOVOS DADOS===");
-            console.log(novosDados);
-            console.log("===DADOS ANTIGOS===");
-            console.log(JSON.stringify(idEnonstrado));
+            // console.log("===NOVOS DADOS===");
+            // console.log(novosDados);
+            // console.log("===DADOS ANTIGOS===");
+            // console.log(JSON.stringify(idEnonstrado));
 
-            console.log("===PERFIL ATUALIZADO===");
+            // console.log("===PERFIL ATUALIZADO===");
             await db("perfis")
                 .where({ id })
                 .update(novosDados)
 
             const perfilAtualizado = await db("perfis").where({ id }).first()
 
-            console.log(JSON.stringify(perfilAtualizado));
+            // console.log(JSON.stringify(perfilAtualizado));
 
 
 
@@ -38,10 +37,10 @@ module.exports = {
 
 
         } else if (nome) {
-            console.log(nome);
+            // console.log(nome);
             const nomeEnonstrado = await db("perfis").where({ nome }).first()
             if (!nomeEnonstrado) {
-                console.log(`Perfil com nome ${nome} não encontrado!!!`);
+                // console.log(`Perfil com nome ${nome} não encontrado!!!`);
                 throw new Error(`Perfil com nome ${nome} não encontrado!!!`);
             }
 
@@ -49,19 +48,19 @@ module.exports = {
                 nome: perfil.nome,
                 rotulo: perfil.rotulo
             }
-            console.log("===NOVOS DADOS===");
-            console.log(novosDados);
-            console.log("===DADOS ANTIGOS===");
-            console.log(JSON.stringify(nomeEnonstrado));
+            // console.log("===NOVOS DADOS===");
+            // console.log(novosDados);
+            // console.log("===DADOS ANTIGOS===");
+            // console.log(JSON.stringify(nomeEnonstrado));
 
-            console.log("===PERFIL ATUALIZADO===");
+            // console.log("===PERFIL ATUALIZADO===");
             await db("perfis")
                 .where({ nome })
                 .update(novosDados)
 
             const perfilAtualizado = await db("perfis").where({ nome }).first()
 
-            console.log(JSON.stringify(perfilAtualizado));
+            // console.log(JSON.stringify(perfilAtualizado));
 
 
 
@@ -69,10 +68,10 @@ module.exports = {
 
 
         } else if (rotulo) {
-            console.log(rotulo);
+            // console.log(rotulo);
             const rotuloEnonstrado = await db("perfis").where({ rotulo }).first()
             if (!rotuloEnonstrado) {
-                console.log(`Perfil com rotulo ${rotulo} não encontrado!!!`);
+                // console.log(`Perfil com rotulo ${rotulo} não encontrado!!!`);
                 throw new Error(`Perfil com rotulo ${rotulo} não encontrado!!!`);
             }
 
@@ -80,19 +79,19 @@ module.exports = {
                 nome: perfil.nome,
                 rotulo: perfil.rotulo
             }
-            console.log("===NOVOS DADOS===");
-            console.log(novosDados);
-            console.log("===DADOS ANTIGOS===");
-            console.log(JSON.stringify(rotuloEnonstrado));
+            // console.log("===NOVOS DADOS===");
+            // console.log(novosDados);
+            // console.log("===DADOS ANTIGOS===");
+            // console.log(JSON.stringify(rotuloEnonstrado));
 
-            console.log("===PERFIL ATUALIZADO===");
+            // console.log("===PERFIL ATUALIZADO===");
             await db("perfis")
                 .where({ rotulo })
                 .update(novosDados)
 
             const perfilAtualizado = await db("perfis").where({ rotulo }).first()
 
-            console.log(JSON.stringify(perfilAtualizado));
+            // console.log(JSON.stringify(perfilAtualizado));
 
 
 

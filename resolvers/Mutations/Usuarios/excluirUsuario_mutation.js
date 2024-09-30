@@ -22,13 +22,13 @@ module.exports = {
             criterio = { id };
             await db("usuario-perfis").where({ usuario_id: id }).del()
 
-            console.log(`Usuario deletado da tabela de referência com perfis ${JSON.stringify(usuarioEncontrado)}`);
+            // console.log(`Usuario deletado da tabela de referência com perfis ${JSON.stringify(usuarioEncontrado)}`);
         } else if (nome) {
             await validarNomeUsuarios(nome);
             usuarioEncontrado = await db("usuarios").where({ nome }).first();
             criterio = { nome };
             await db("usuario-perfis").where({ usuario_id: usuarioEncontrado.id }).del()
-            console.log(`Usuario deletado da tabela de referência com perfis ${JSON.stringify(usuarioEncontrado)}`);
+            // console.log(`Usuario deletado da tabela de referência com perfis ${JSON.stringify(usuarioEncontrado)}`);
 
 
         } else if (email) {
@@ -36,12 +36,12 @@ module.exports = {
             usuarioEncontrado = await db("usuarios").where({ email }).first();
             criterio = { email };
             await db("usuario-perfis").where({ usuario_id: usuarioEncontrado.id }).del()
-            console.log(`Usuario deletado da tabela de referência com perfis ${JSON.stringify(usuarioEncontrado)}`);
+            // console.log(`Usuario deletado da tabela de referência com perfis ${JSON.stringify(usuarioEncontrado)}`);
         }
         await db("usuarios").where(criterio).del()
 
 
-        console.log(`Usuário com ${JSON.stringify(criterio)} deletado.`);
+        // console.log(`Usuário com ${JSON.stringify(criterio)} deletado.`);
 
 
         const perfil = await db("perfis").where({ id: usuarioEncontrado.perfil }).first()

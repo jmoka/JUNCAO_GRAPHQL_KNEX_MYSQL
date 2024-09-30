@@ -10,11 +10,11 @@ module.exports = {
     usuarios() {
         return TodosUsuarios();
     },
-    usuario_ID(_, { id }) {
+    usuarioID(_, { id }) {
         return Usuario_ID(id)
 
     },
-    usuario_Nome(_, { nome }) {
+    usuarioNome(_, { nome }) {
         return UsuarioNome(nome)
     },
 

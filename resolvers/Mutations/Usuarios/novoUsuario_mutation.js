@@ -11,7 +11,7 @@ module.exports = {
             // Verifica se o e-mail já está cadastrado
             const emailExistente = await validarEmail(user.email);
             if (emailExistente) {
-                console.log("Usuário já cadastrado com esse email");
+              //  console.log("Usuário já cadastrado com esse email");
                 throw new Error("Usuário já cadastrado com esse email = " + user.email);
             }
             // Cria um novo usuário usando os atributos fornecidos em user

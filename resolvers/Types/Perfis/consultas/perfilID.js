@@ -9,7 +9,6 @@ async function PerfilID(id) {
             nome: perfis.nome,
             rotulo: perfis.rotulo
         }
-        console.log(perfilEnconstrado);
         return perfilEnconstrado
 
 

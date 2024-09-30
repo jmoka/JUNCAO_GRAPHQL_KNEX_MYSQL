@@ -14,7 +14,6 @@ async function perfilRotulo(rotulo) {
             rotulo: perfil.rotulo
         }
 
-        console.log(perfilEncontrado);
         return perfilEncontrado;
 
 
