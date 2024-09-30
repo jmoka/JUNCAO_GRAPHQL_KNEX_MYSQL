@@ -1,7 +1,7 @@
 const db = require("@data/db");
 const { format } = require("date-fns");
 async function UsuarioID(id) {
-    console.log(`UsuarioID=>${id}`);
+    // console.log(`UsuarioID=>${id}`);
     try {
         const usuarioID = await db("usuarios")
             .leftJoin("perfis", "usuarios.perfil", "=", "perfis.id") // Usar leftJoin para incluir usuários sem perfil
@@ -31,10 +31,10 @@ async function UsuarioID(id) {
                 rotulo: usuarioID.perfil_rotulo || "Rótulo não definido"
             }
         };
-        console.log(resultado);
+        // console.log(resultado);
         return resultado;
     } catch (error) {
-        console.error("Erro ao buscar usuário:", error.message); // Log do erro no console
+        // // console.error("Erro ao buscar usuário:", error.message); // Log do erro no console
         throw new Error("Não foi possível retornar o usuário com esse ID."); // Mensagem sem "cathe"
     }
 }

@@ -2,7 +2,7 @@ const db = require("@data/db");
 const { format } = require("date-fns");
 
 async function UsuarioNome(nome) {
-    console.log(nome);
+    // console.log(nome);
 
     try {
         const usuarioNome = await db("usuarios")
@@ -35,10 +35,10 @@ async function UsuarioNome(nome) {
                 rotulo: usuarioNome.perfil_rotulo || "Rótulo não definido"
             }
         };
-        console.log(resultado);
+        // console.log(resultado);
         return resultado;
     } catch (error) {
-        console.error("Erro ao buscar usuário:", error.message); // Log do erro no console
+        // console.error("Erro ao buscar usuário:", error.message); // Log do erro no console
         throw new Error("Não foi possível retornar o usuário com esse Nome." + nome); // Mensagem sem "cathe"
     }
 }

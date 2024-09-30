@@ -4,7 +4,7 @@
 - Para colocar o sistema em desenvolvimento faça o seguinte
 - Abra o arquivo
 
-            knexfile.js
+          .env
 
 - E altere:
 
